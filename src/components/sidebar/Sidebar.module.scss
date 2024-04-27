@@ -1,0 +1,133 @@
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 64px ;
+  height: 100%;
+    overflow: hidden;
+  --tw-text-opacity: 1;
+  color: white;
+  transition: width 0.3s; /* Transition width for sidebar expansion */
+    --tw-bg-opacity: 1;
+  background-color: black;
+position: fixed;
+.header{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer; 
+
+    padding-left: 12px;
+    padding-right:12px;
+    margin-top: 12px;
+    svg{
+      width: 32px ;
+      height: 32px ;
+      fill: currentColor;
+      transition: fill 0.3s; /* Transition fill color for SVG */
+    }
+    span{
+      margin: 0 8px;
+      font-weight: 700;
+      font-size: 14px;
+  line-height:20px ;
+  font-weight: 700;
+  display: none;
+    }
+}
+
+main{
+  width: 100%;
+  padding: 0 8px;
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+    border-top-width: 1px;
+    --tw-border-opacity: 1;
+  border-color: white;
+
+  a{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    padding: 0 12px;
+    margin-top: 8px;
+    border-radius: 4px ;
+    transition: background-color 0.3s, color 0.3s; /* Transition background and color for hover */
+    svg{
+      width: 24px/* 24px */;
+      height: 24px/* 24px */;
+      stroke: currentColor;
+  
+    }
+    
+    span{
+      margin: 0 8px;
+      font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    display: none;
+    display: none;
+
+    }
+    &:hover{
+      background-color: gray;
+      color: #ff9501 ;
+    }
+    &.active{
+      background-color: gray;
+      color: #ff9501 ;
+    }
+  }
+
+  }
+}
+
+.footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  margin-top: auto;
+  background-color: rgb(42, 40, 40);
+  transition: background-color 0.3s, color 0.3s; /* Transition background and color for hover */
+  svg{
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+  }
+  
+  span{
+    margin: 0 8px;
+    font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  display: none;
+
+  }
+
+  &:hover{
+    background-color: gray;
+    color: rgb(209 213 219) ;
+  }
+}
+
+
+@media (min-width: 1281px) {
+    
+  &:hover{
+    width: 160px;
+    .header span , main .container span ,.footer span{
+      display: block;
+    }
+  
+  }
+
+}
+}

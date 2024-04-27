@@ -1,0 +1,62 @@
+.home{
+  padding: 32px;
+  background-color: #FBFBF2;
+  margin-left: 160px;
+
+  width: 100%;
+  
+  @media (max-width: 1280px) {
+    
+      margin-left: 64px;
+    
+  }   
+
+.container{
+
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 720px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cardsContainer{
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 10px;
+      @media (min-width: 1024px) {
+        
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        
+      }
+      @media (min-width: 1280px) {
+        
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        
+      }
+  
+  
+      @media (min-width: 1536px) {
+        
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        
+      }
+      .gap-8 {
+        gap: 32px;
+      }
+    }
+
+    .cashContainer{
+      position: fixed;
+    right: 32px;
+    @media (max-width: 720px) {
+      position: unset;
+    }
+    }
+}
+
+
+
+}

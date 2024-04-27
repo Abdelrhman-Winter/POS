@@ -1,0 +1,17 @@
+.container  {
+  background: #f4f4f4;
+  padding: 25px;
+  width: 350px;
+  border-radius: 10px;
+  height: 300px;
+  overflow: scroll;
+
+  .heading , .orders{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: 10%;
+    justify-content: center
+    
+  }
+}
