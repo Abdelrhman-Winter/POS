@@ -1,0 +1,30 @@
+@import '/src/styles/colors.scss' ;
+
+.chart-container {
+  background: $white-font;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  transition: box-shadow 0.5s, transform 0.5s;
+  transform: scale(0.95);
+  &:hover{
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0,0,0,0.2);
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+  }
+
+}

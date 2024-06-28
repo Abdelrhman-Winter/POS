@@ -1,27 +1,20 @@
-import { getAllTableItemBItems } from "@/utils/table";
 import styles from "./Tables.module.scss";
-import dynamic from "next/dynamic";
 import TableManger from "@/components/tableManger/TableManger";
+import RTableProvider from "@/providers/RestaurantTableProvider";
+import TableCardsContainer from "@/components/resturantTableCards/TableCardsContainer";
 
-//optmize
-const DynamicCard = dynamic(() => import("@/components/cardTable/Card"), {
-  loading: () => <p>loading ....</p>,
-});
-
-const tables = async () => {
-  const tables = await getAllTableItemBItems();
+const tables = () => {
   return (
     <main className={styles.home}>
-      <div className={styles.container}>
-        <div className={styles.cardsContainer}>
-          {tables.map((table: any) => {
-            return <DynamicCard TableDetails={table} key={table.id} />;
-          })}
+      <RTableProvider>
+        <div className={styles.container}>
+          <TableCardsContainer />
+
+          <div className={styles.cashContainer}>
+            <TableManger />
+          </div>
         </div>
-        <div className={styles.cashContainer}>
-          <TableManger />
-        </div>
-      </div>
+      </RTableProvider>
     </main>
   );
 };

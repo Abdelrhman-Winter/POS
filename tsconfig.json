@@ -21,6 +21,17 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/data/statistics-cards-data.js",
+    "src/data/projects-table-data.js",
+    "src/data/orders-overview-data.js",
+    "src/data/platform-settings-data.js",
+    "src/data/projects-data.js",
+    "src/data/statistics-charts-data.js"
+  ],
   "exclude": ["node_modules"]
 }

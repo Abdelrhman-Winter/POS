@@ -1,35 +1,34 @@
-import { getAllFastFoodItems } from "@/utils/fastFood";
-import dynamic from "next/dynamic";
 import styles from "./Home.module.scss";
-import CasherCalculator from "@/components/calculator/CasherCalculator";
-import Orders from "@/components/orders/Orders";
-import Modal from "@/components/modal/Modal";
-
-const DynamicCard = dynamic(() => import("@/components/card/Card"), {
-  loading: () => <p>loading ....</p>,
+import CardsContainer from "@/components/cardsContainer/CardsContainer";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+import FFoodProvider from "@/providers/FastFoodProvider";
+const Orders = dynamic(() => import("@/components/orders/Orders"), {
+  ssr: false,
 });
+const CasherCalculator = dynamic(
+  () => import("@/components/calculator/CasherCalculator"),
+  { ssr: false }
+);
+const Modal = dynamic(() => import("@/components/modal/Modal"), { ssr: false });
 
-export default async function Home() {
-  const fFood = await getAllFastFoodItems();
-
-  if (fFood.length === 0) {
-    console.log("no food ");
-  }
-
+export default function Home() {
   return (
     <main className={styles.home}>
-      <div className={styles.container}>
-        <div className={styles.cardsContainer}>
-          {fFood.map((food: any) => {
-            return <DynamicCard FoodDetails={food} key={food.id} />;
-          })}
+      <FFoodProvider>
+        <div className={styles.container}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CardsContainer />
+          </Suspense>
+          <div className={styles.cashContainer}>
+            <Orders />
+            <CasherCalculator />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Modal />
+            </Suspense>
+          </div>
         </div>
-        <div className={styles.cashContainer}>
-          <Orders />
-          <CasherCalculator />
-          <Modal />
-        </div>
-      </div>
+      </FFoodProvider>
     </main>
   );
 }

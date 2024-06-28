@@ -1,10 +1,22 @@
 "use client";
-import { useFastFood } from "@/hooks/useFastFood ";
+import { useFastFood } from "@/hooks/useFastFood";
 import styles from "./Orders.module.scss";
+import React, { useMemo } from "react";
 import OrderDetalis from "../orderDetalis/OrderDetalis";
 
-const Oraders = () => {
+const Orders = () => {
   const { cart } = useFastFood();
+
+  const memoizedOrders = useMemo(() => {
+    if (!cart) {
+      return <p>No orders available</p>;
+    }
+    return cart.map((order: any) => (
+      <div className={styles.orders} key={order.id}>
+        <OrderDetalis Order={order} />
+      </div>
+    ));
+  }, [cart]);
 
   return (
     <>
@@ -15,18 +27,10 @@ const Oraders = () => {
           <p>QUANTITY</p>
         </div>
 
-        {cart
-          ? cart.map((order: any) => {
-              return (
-                <div className={styles.orders} key={order.id}>
-                  <OrderDetalis Order={order} />{" "}
-                </div>
-              );
-            })
-          : ""}
+        {memoizedOrders}
       </div>
     </>
   );
 };
 
-export default Oraders;
+export default React.memo(Orders);

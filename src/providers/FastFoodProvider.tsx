@@ -1,6 +1,6 @@
 "use client";
 
-import { FastFoodContextProvider } from "@/hooks/useFastFood ";
+import { FastFoodContextProvider } from "@/hooks/useFastFood";
 
 interface FastFoodProps {
   children: React.ReactNode;

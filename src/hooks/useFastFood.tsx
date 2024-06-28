@@ -76,7 +76,7 @@ export const FastFoodContextProvider = (props: Props) => {
         break;
       case "=":
         try {
-          result = eval(calcValue).toString();
+          result = eval(calcValue.trim()).toFixed(2);
         } catch (error) {
           result = "NaN";
         }
@@ -203,7 +203,6 @@ export const FastFoodContextProvider = (props: Props) => {
           ...item,
           quantity: 1,
         }));
-        console.log(updatedCart);
 
         localStorage.setItem("CartFood", JSON.stringify(null));
         setCartTotalQty(0);

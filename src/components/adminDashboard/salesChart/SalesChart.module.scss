@@ -1,0 +1,47 @@
+@import '/src/styles/colors.scss' ;
+
+.chart-container {
+  background: $white-font;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s, transform 0.5s;
+  transform: scale(0.95);
+
+  &:hover {
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #111827;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+
+    .chart-percentage {
+      font-size: 0.875rem;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.25rem;
+      }
+    }
+  }
+}

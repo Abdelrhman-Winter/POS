@@ -1,6 +1,8 @@
+@import '/src/styles/colors.scss' ;
+
 .container  {
-  background: #000000;
-  padding: 25px;
+  background: $white-font;
+  padding: 18px;
   width: 350px;
   border-radius: 10px 10px 0 0;
 
@@ -15,15 +17,30 @@
     font-size: 3.5rem;
     text-align: end;
     background: transparent;
-    color: #fff;
+    color: #000000;
     border: none;
     outline: none;
-    word-wrap: break-word;
-    word-break: break-all;
+    /* word-wrap: break-word; */
+    /* word-break: break-all; */
+    overflow-x: auto;
+    &::-webkit-scrollbar{
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f4f4f4;
+      width: 5px;
+      border-radius: 10px;
+
+    }
+    &::-webkit-scrollbar-thumb {
+background: #7928ca95;
+border-radius: 10px;
+height: 10px;
+  }
   }
   button {
-    background: #333333;
-    color: #fff;
+    background: #4d4b4b;
+    color: $white-font;
     font-size: 1.5rem;
     border: none;
     border-radius: 70%;
@@ -53,12 +70,11 @@
     border-radius: 30px;
   }
   
-  .keyOperate {
-    background: #ff9501;
+  .keyOperate,.keyOthers  {
+    background: #333333;
   }
-  
-  .keyOthers {
-    background: #a6a6a6;
-    color: #000000;
+  .eqal{
+    background: $secondary-color;
   }
+
 }

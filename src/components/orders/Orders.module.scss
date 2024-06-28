@@ -1,11 +1,15 @@
+@import '/src/styles/colors.scss' ;
+
 .container  {
-  background: #f4f4f4;
+  background: $white-font;
   padding: 25px;
   width: 350px;
   border-radius: 10px;
   height: 300px;
   overflow: scroll;
-
+  margin-bottom: 10px;
+  overflow-y: auto;  
+  overflow-x: hidden; 
   .heading , .orders{
     display: flex;
     align-content: center;
@@ -14,4 +18,26 @@
     justify-content: center
     
   }
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f4f4f4;
+    width: 3px;
+    border-radius: 10px;
+
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #7928caf3; /* Scrollbar thumb color on hover */
+  }
+  &::-webkit-scrollbar-thumb {
+background: $secondary-color;
+border-radius: 10px;
+width:3px;
+}
+// @media (max-width: 768px) {
+//   width: 300px;
+//   padding: 15px;
+
+// }
 }

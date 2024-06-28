@@ -1,11 +1,10 @@
 "use client";
-import { useFastFood } from "@/hooks/useFastFood ";
+import { useFastFood } from "@/hooks/useFastFood";
 import styles from "./CasherCalculator.module.scss";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 const CasherCalculator = () => {
-  const { calcValue, setCalcValue, handleNumberClick, handleOperationClick } =
-    useFastFood();
+  const { calcValue, handleNumberClick, handleOperationClick } = useFastFood();
 
   // Memoize the button click handlers
   const memoizedNumberClickHandler = useMemo(() => {
@@ -16,11 +15,6 @@ const CasherCalculator = () => {
   const memoizedOperationClickHandler = useMemo(() => {
     return (operation: string) => handleOperationClick(operation);
   }, [handleOperationClick]);
-
-  // Update the input value when it changes
-  useEffect(() => {
-    setCalcValue(calcValue);
-  }, [calcValue, setCalcValue]);
 
   return (
     <div className={styles.container}>
@@ -65,7 +59,7 @@ const CasherCalculator = () => {
                 typeof number === "number"
                   ? ""
                   : `${styles.keyOperate} ${styles.operations}`
-              }`}
+              } ${number === "=" ? `${styles.eqal}` : ""}`}
               onClick={
                 typeof number === "number"
                   ? () => memoizedNumberClickHandler(number.toString())

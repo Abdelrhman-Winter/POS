@@ -1,43 +1,23 @@
+import dynamic from "next/dynamic";
 import styles from "./TableManger.module.scss";
 import BookingInput from "./bookingInput/BookingInput";
-const TableManger = () => {
+// import TableControlPanel from "./tableControlPanel/TableControlPanel";
+const TableControlPanel = dynamic(
+  () => import("./tableControlPanel/TableControlPanel"),
+  { ssr: false }
+);
+
+import { Suspense } from "react";
+
+const TableManager = () => {
   return (
     <div className={styles.container}>
-      <BookingInput />
-      <div className="mb-6 text-center">
-        <button
-          className="w-full px-4 py-2 font-bold text-white bg-[#ff9501] rounded-full hover:bg-gray-500 focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          ADD Table
-        </button>
-      </div>
-      <div className="mb-6 text-center">
-        <button
-          className="w-full px-4 py-2 font-bold text-white bg-[#ff9501] rounded-full hover:bg-gray-500 focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          Remove Table
-        </button>
-      </div>
-      <div className="mb-6 text-center">
-        <button
-          className="w-full px-4 py-2 font-bold text-white bg-[#ff9501] rounded-full hover:bg-gray-500 focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          Clear Table
-        </button>
-      </div>
-      <div className="mb-6 text-center">
-        <button
-          className="w-full px-4 py-2 font-bold text-white bg-[#ff9501] rounded-full hover:bg-gray-500 focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          Paying
-        </button>
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <BookingInput />
+      </Suspense>
+      <TableControlPanel />
     </div>
   );
 };
 
-export default TableManger;
+export default TableManager;

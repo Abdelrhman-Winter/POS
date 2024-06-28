@@ -1,0 +1,56 @@
+
+.container{
+  width: 100%;
+    height: 100%;
+    padding-top: 10%;
+
+
+    .addForm{
+      display: flex;
+    align-items: center;
+    justify-content: center;
+      height: 100%;
+      gap: 40px;
+    }
+    .imagePreview{
+      height: 100%;
+    background-size: cover;
+    }
+
+.addproduct{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 40px;
+
+}
+
+/* End of  Button  */
+
+@media (max-width: 767px) {
+    
+  width: auto;
+  height: 100%;
+  /* margin-top: 15%; */
+  .addForm{
+  flex-direction: column;
+  margin-left: 60px;
+}
+.addpic{
+  width: 16rem;
+    height: 300px;
+}
+.inputAlt {
+  width: 275px;
+}
+}
+@media (max-width: 1024px) {
+    
+  .addForm{
+    flex-direction: column;
+  }
+}
+
+}

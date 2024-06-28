@@ -1,0 +1,29 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  background-color: #f3f4f6;
+  margin-left: 64px;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5em; // or any other desired styles
+    margin-left: 64px;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

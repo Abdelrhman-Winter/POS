@@ -1,0 +1,29 @@
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 10px;
+
+  // CSS variables for breakpoints
+  $breakpoints: (
+    'lg': 1024px,
+    'xl': 1400px,
+    '2xl': 1536px
+  );
+
+  // Loop through breakpoints to generate media queries
+  @each $breakpoint, $size in $breakpoints {
+    @media (min-width: #{$size}) {
+      grid-template-columns: repeat(
+        if($breakpoint == 'lg', 2, if($breakpoint == 'xl', 3, 4)),
+        minmax(0, 1fr)
+      );
+    }
+  }
+
+  .gap-8 {
+    gap: 32px;
+  }
+}
+.loaderContainer{
+  margin:100px ;
+}

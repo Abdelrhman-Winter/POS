@@ -1,0 +1,16 @@
+@import '/src/styles/colors.scss' ;
+
+.bookedStatus,.payingStatus{
+  position: absolute;
+  padding: 5px;
+  box-shadow: 4px 4px 0px 0px black;
+  color: $white-font;
+  font-weight: 600;
+}
+.bookedStatus{
+  background: #00eac7;
+
+}
+.payingStatus{
+  background:#fe5370;
+}
