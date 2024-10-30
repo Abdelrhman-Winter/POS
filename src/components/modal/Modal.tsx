@@ -1,48 +1,83 @@
 "use client";
 import { useFastFood } from "@/hooks/useFastFood";
 import { useState, useCallback } from "react";
-import styles from "./Modal.module.scss";
 
 export default function Modal() {
   const [showModal, setShowModal] = useState(false);
   const { cart, cartTotalAmount, calcValue, handelClearCart } = useFastFood();
 
-  const printDivContent = useCallback((divId: string) => {
-    const printElement = document.getElementById(divId);
-    if (!printElement) {
-      console.error(`Element with ID "${divId}" not found.`);
+  const printReceipt = useCallback(() => {
+    const printWindow = window.open("", "_blank", "height=600,width=800");
+
+    if (!printWindow) {
+      console.error("Failed to open print window.");
       return;
     }
 
-    const printContents = printElement.innerHTML;
-    const originalContents = document.body.innerHTML;
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Receipt</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h1 { text-align: center; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #000; padding: 8px; text-align: center; }
+            th { background-color: #f2f2f2; }
+            tfoot td { font-weight: bold; }
+          </style>
+        </head>
+        <body>
+          <h1>Order Receipt</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Quantity</th>
+                <th>Price (EGP)</th>
+              </tr>
+            </thead>
+            <tbody>
+      ${
+        cart
+          ?.map(
+            (order) => `
+                <tr>
+                  <td>${order.name}</td>
+                  <td>${order.quantity}</td>
+                  <td>${order.price}</td>
+                </tr>`
+          )
+          .join("") ||
+        `
+                <tr>
+                  <td colspan="3">No items in cart</td>
+                </tr>`
+      }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">Total</td>
+                <td>${cartTotalAmount} EGP</td>
+              </tr>
+              <tr>
+                <td colspan="2">Total After Discount</td>
+                <td>${calcValue} EGP</td>
+              </tr>
+            </tfoot>
+          </table>
+        </body>
+      </html>
+    `);
 
-    const tmpWindow = window.open("", "PRINT", "height=400,width=600");
-    const tmpDoc = tmpWindow?.document;
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
 
-    if (!tmpDoc) {
-      console.error("Failed to create a new window for printing.");
-      return;
-    }
-
-    tmpDoc.write("<html><head><title>Print Content</title></head><body>");
-    tmpDoc.write("<h1>Order Details</h1>");
-    tmpDoc.write(printContents);
-    tmpDoc.write("</body></html>");
-
-    tmpDoc.close();
-    tmpWindow?.focus();
-    tmpWindow?.print();
-    tmpWindow?.close();
-
-    document.body.innerHTML = originalContents;
-  }, []);
-
-  const payAndPrint = useCallback(() => {
-    printDivContent("printablediv");
     handelClearCart();
     setShowModal(false);
-  }, [printDivContent, handelClearCart]);
+  }, [cart, cartTotalAmount, calcValue, handelClearCart]);
 
   return (
     <>
@@ -118,7 +153,7 @@ export default function Modal() {
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={payAndPrint}
+                    onClick={printReceipt}
                   >
                     Pay
                   </button>
